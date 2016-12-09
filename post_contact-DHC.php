@@ -23,12 +23,15 @@
 		header('Location: index.php'); // if errors, redirect to this page
 	}else{
 		$_SESSION['success'] = 1;
-		$message = $_POST['message']; // client message
-		$sender = $_POST['email']; // client mail adress
-		$headers = 'FROM: siteName'; // receive message header
-		mail($sender,'Contact Form', 'Thank you', $headers); // actual message is 'Thank you'
-		mail('test@gmail.com','Contact Form', $message, $headers); // Here put your mail adress to receive the message from the form
-		header('Location: index.php'); // if success redirect to this page
+
+		$verif=[];
+		$verif['name'] = $_POST['name'] ;
+		$verif['email'] = $_POST['email'] ;
+		$verif['message'] = $_POST['message'] ;
+
+		$_SESSION['verif'] = $verif ;
+
+		header('Location: confirm.php'); // if success redirect to this page
 	}
 
 ?>
